@@ -1,0 +1,1357 @@
+{
+  "contract_version": "1.0",
+  "generated": "2026-08-18",
+  "table_count": 18,
+  "tables": {
+    "Patient": {
+      "source_system": "patient",
+      "sheet": "Patient",
+      "business_key": "Patient_ID",
+      "min_rows": 1,
+      "reference_rows": 9000,
+      "column_count": 12,
+      "columns": [
+        {
+          "name": "Patient_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Age",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Gender",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Age_Group",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Region",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "State",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "City_Market",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Insurance_Type",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Insurance_Plan",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Disease_Condition",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Baseline_Risk",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Patient_Start_Date",
+          "type": "date",
+          "nullable": false
+        }
+      ]
+    },
+    "Program_Enrollment": {
+      "source_system": "patient",
+      "sheet": "Program_Enrollment",
+      "business_key": "Enrollment_ID",
+      "min_rows": 1,
+      "reference_rows": 15576,
+      "column_count": 10,
+      "columns": [
+        {
+          "name": "Enrollment_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Patient_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Enrollment_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Enrollment_Status",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_Start_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Program_End_Date",
+          "type": "date",
+          "nullable": true
+        },
+        {
+          "name": "Exit_Date",
+          "type": "date",
+          "nullable": true
+        },
+        {
+          "name": "Enrollment_Channel",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Enrollment_Reason",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    "Pharmacy_Claims": {
+      "source_system": "patient",
+      "sheet": "Pharmacy_Claims",
+      "business_key": "Claim_ID",
+      "min_rows": 1,
+      "reference_rows": 87400,
+      "column_count": 16,
+      "columns": [
+        {
+          "name": "Claim_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Patient_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Product_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Claim_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Prescription_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Fill_Number",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Days_Supply",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Quantity",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Refill_Number",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Claim_Status",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Pharmacy_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Prescriber_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Patient_Paid_Amount",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Diagnosis_Code",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Dose",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Frequency",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    "Program_Product": {
+      "source_system": "patient",
+      "sheet": "Program_Product",
+      "business_key": "Program_ID+Product_ID",
+      "min_rows": 1,
+      "reference_rows": 112,
+      "column_count": 11,
+      "columns": [
+        {
+          "name": "Program_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_Name",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_Type",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Product_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Product_Name",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Therapy_Area",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Dosage",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Dosage_Form",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Frequency",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_Start_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Program_End_Date",
+          "type": "string",
+          "nullable": true
+        }
+      ]
+    },
+    "Patient_Support_Interaction": {
+      "source_system": "patient",
+      "sheet": "Patient_Support_Interaction",
+      "business_key": "Interaction_ID",
+      "min_rows": 1,
+      "reference_rows": 42652,
+      "column_count": 11,
+      "columns": [
+        {
+          "name": "Interaction_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Patient_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Interaction_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Interaction_Type",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Interaction_Channel",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Interaction_Reason",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Interaction_Status",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Outcome",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Follow_Up_Required",
+          "type": "boolean",
+          "nullable": false
+        },
+        {
+          "name": "Follow_Up_Date",
+          "type": "date",
+          "nullable": true
+        }
+      ]
+    },
+    "Calendar_Date": {
+      "source_system": "patient",
+      "sheet": "Calendar_Date",
+      "business_key": "Date",
+      "min_rows": 1,
+      "reference_rows": 958,
+      "column_count": 10,
+      "columns": [
+        {
+          "name": "Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Day",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Week",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Week_Number",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Month",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Month_Name",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Month_Number",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Quarter",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Year",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Year_Month",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    "Eligibility_Population": {
+      "source_system": "patient",
+      "sheet": "Eligibility_Population",
+      "business_key": "Eligibility_ID",
+      "min_rows": 1,
+      "reference_rows": 38049,
+      "column_count": 9,
+      "columns": [
+        {
+          "name": "Eligibility_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Patient_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Eligibility_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Eligible_Flag",
+          "type": "boolean",
+          "nullable": false
+        },
+        {
+          "name": "Eligibility_Reason",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Eligibility_Start_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Eligibility_End_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Enrollment_Eligible_Flag",
+          "type": "boolean",
+          "nullable": false
+        }
+      ]
+    },
+    "Patient_Outcome_Status": {
+      "source_system": "patient",
+      "sheet": "Patient_Outcome_Status",
+      "business_key": "Outcome_ID",
+      "min_rows": 1,
+      "reference_rows": 9000,
+      "column_count": 13,
+      "columns": [
+        {
+          "name": "Outcome_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Patient_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Assessment_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Treatment_Start_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Last_Refill_Date",
+          "type": "date",
+          "nullable": true
+        },
+        {
+          "name": "Last_Covered_Date",
+          "type": "date",
+          "nullable": true
+        },
+        {
+          "name": "Current_Treatment_Status",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "PDC",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Persistence_Days",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Persistence_Months",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Discontinuation_Date",
+          "type": "date",
+          "nullable": true
+        },
+        {
+          "name": "Adherence_Status",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Risk_Status",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    "Patient_Master": {
+      "source_system": "business",
+      "sheet": "Patient_Master",
+      "business_key": "Patient_ID",
+      "min_rows": 1,
+      "reference_rows": 9000,
+      "column_count": 9,
+      "columns": [
+        {
+          "name": "Patient_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Age_Group",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Gender",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Region",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "State",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Income_Band",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Financial_Assistance_Eligible",
+          "type": "boolean",
+          "nullable": false
+        },
+        {
+          "name": "Employment_Status",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Patient_Status",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    "Drug_Master": {
+      "source_system": "business",
+      "sheet": "Drug_Master",
+      "business_key": "Drug_ID",
+      "min_rows": 1,
+      "reference_rows": 21,
+      "column_count": 12,
+      "columns": [
+        {
+          "name": "Drug_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Drug_Name",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Brand_Name",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Therapeutic_Area",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Indication",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Dosage_Form",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Strength",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "List_Price",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Average_Selling_Price",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "COGS_Per_Unit",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Manufacturing_Cost",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Distribution_Cost",
+          "type": "number",
+          "nullable": false
+        }
+      ]
+    },
+    "Insurance_Payer_Master": {
+      "source_system": "business",
+      "sheet": "Insurance_Payer_Master",
+      "business_key": "Payer_ID+Plan_ID",
+      "min_rows": 1,
+      "reference_rows": 30,
+      "column_count": 20,
+      "columns": [
+        {
+          "name": "Payer_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Payer_Name",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Payer_Type",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Insurance_Type",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Plan_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Plan_Type",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "PBM_Name",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Formulary_Tier",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Coverage_Status",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Coverage_Percentage",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Deductible_Amount",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "OOP_Maximum",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Copay_Amount",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Coinsurance_Rate",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Copay_Model",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Accumulator_Flag",
+          "type": "boolean",
+          "nullable": false
+        },
+        {
+          "name": "Maximizer_Flag",
+          "type": "boolean",
+          "nullable": false
+        },
+        {
+          "name": "Alternative_Funding_Flag",
+          "type": "boolean",
+          "nullable": false
+        },
+        {
+          "name": "Prior_Authorization_Required",
+          "type": "boolean",
+          "nullable": false
+        },
+        {
+          "name": "Step_Therapy_Required",
+          "type": "boolean",
+          "nullable": false
+        }
+      ]
+    },
+    "Patient_Insurance_Enrollment": {
+      "source_system": "business",
+      "sheet": "Patient_Insurance_Enrollment",
+      "business_key": "Patient_Insurance_ID",
+      "min_rows": 1,
+      "reference_rows": 17234,
+      "column_count": 10,
+      "columns": [
+        {
+          "name": "Patient_Insurance_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Patient_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Payer_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Plan_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Coverage_Start_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Coverage_End_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Coverage_Status",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Deductible_YTD",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "OOP_YTD",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Benefit_Year",
+          "type": "number",
+          "nullable": false
+        }
+      ]
+    },
+    "Prescription_Transaction": {
+      "source_system": "business",
+      "sheet": "Prescription_Transaction",
+      "business_key": "Prescription_ID",
+      "min_rows": 1,
+      "reference_rows": 87400,
+      "column_count": 19,
+      "columns": [
+        {
+          "name": "Prescription_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Patient_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Drug_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Payer_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Plan_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_ID",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "Prescription_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Fill_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Quantity",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Days_Supply",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Gross_Drug_Cost",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Allowed_Amount",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Insurance_Paid",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Patient_OOP",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Manufacturer_Assistance",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Claim_Status",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Prescription_Channel",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Transaction_Month",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Reversal_Flag",
+          "type": "boolean",
+          "nullable": false
+        }
+      ]
+    },
+    "Copay_Claim_Transaction": {
+      "source_system": "business",
+      "sheet": "Copay_Claim_Transaction",
+      "business_key": "Copay_Claim_ID",
+      "min_rows": 1,
+      "reference_rows": 28090,
+      "column_count": 27,
+      "columns": [
+        {
+          "name": "Copay_Claim_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Prescription_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Patient_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Drug_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Payer_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Claim_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Submission_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Processing_Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Processing_Days",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Paid_Date",
+          "type": "date",
+          "nullable": true
+        },
+        {
+          "name": "Claim_Status",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Claim_Rejection_Reason",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "Claim_Submitted_Amount",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Claim_Approved_Amount",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Claim_Paid_Amount",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Manufacturer_Assistance",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Patient_OOP_Before",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Patient_OOP_After",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Patient_Savings",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Annual_Copay_Max",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Copay_Balance_Before",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Copay_Used",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Copay_Balance_After",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Fund_Exhausted_Flag",
+          "type": "boolean",
+          "nullable": false
+        },
+        {
+          "name": "Accumulator_Flag",
+          "type": "boolean",
+          "nullable": false
+        },
+        {
+          "name": "Maximizer_Flag",
+          "type": "boolean",
+          "nullable": false
+        }
+      ]
+    },
+    "PSP_Program_Master": {
+      "source_system": "business",
+      "sheet": "PSP_Program_Master",
+      "business_key": "Program_ID",
+      "min_rows": 1,
+      "reference_rows": 6,
+      "column_count": 11,
+      "columns": [
+        {
+          "name": "Program_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_Name",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_Type",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_Category",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Annual_Budget",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Fixed_Cost",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Variable_Cost_Per_Patient",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Copay_Max_Per_Patient",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Eligibility_Criteria",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Trajectory_Shape",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_Status",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    "PSP_Cost_Transaction": {
+      "source_system": "business",
+      "sheet": "PSP_Cost_Transaction",
+      "business_key": "Cost_ID",
+      "min_rows": 1,
+      "reference_rows": 3477,
+      "column_count": 11,
+      "columns": [
+        {
+          "name": "Cost_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Program_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Drug_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Month",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Copay_Funding_Cost",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Personnel_Cost",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Technology_Cost",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Vendor_Cost",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Administration_Cost",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Marketing_Cost",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Total_Program_Cost",
+          "type": "number",
+          "nullable": false
+        }
+      ]
+    },
+    "Revenue_GTN_Transaction": {
+      "source_system": "business",
+      "sheet": "Revenue_GTN_Transaction",
+      "business_key": "Revenue_ID",
+      "min_rows": 1,
+      "reference_rows": 669,
+      "column_count": 16,
+      "columns": [
+        {
+          "name": "Revenue_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Drug_ID",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Month",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Gross_Sales",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Units_Sold",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Commercial_Rebate",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Government_Rebate",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Chargeback",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Discount",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Copay_Assistance_Deduction",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Return_Allowance",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Other_GTN",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Total_GTN",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Net_Revenue",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "COGS",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Contribution_Profit",
+          "type": "number",
+          "nullable": false
+        }
+      ]
+    },
+    "Date_Dimension": {
+      "source_system": "business",
+      "sheet": "Date_Dimension",
+      "business_key": "Date",
+      "min_rows": 1,
+      "reference_rows": 958,
+      "column_count": 7,
+      "columns": [
+        {
+          "name": "Date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "Day",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Month",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Month_Number",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Quarter",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "Year",
+          "type": "number",
+          "nullable": false
+        },
+        {
+          "name": "Fiscal_Year",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    }
+  }
+}
