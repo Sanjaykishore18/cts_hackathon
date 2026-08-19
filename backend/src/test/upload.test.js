@@ -168,7 +168,7 @@ async function runTests() {
     const batchId = body.data.batch_id;
 
     // Verify manifest links them under same batch path
-    const manifestPath = path.join(process.env.UPLOAD_STORAGE_ROOT, String(userId), batchId, 'patient', 'manifest.json');
+    const manifestPath = path.join(process.env.UPLOAD_STORAGE_ROOT, 'tenant_default', batchId, 'patient', 'manifest.json');
     assert.ok(fs.existsSync(manifestPath));
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
     assert.strictEqual(manifest.batch_id, batchId);
@@ -334,12 +334,12 @@ async function runTests() {
     const body = await res.json();
     const batchId = body.data.batch_id;
 
-    const manifestPath = path.join(process.env.UPLOAD_STORAGE_ROOT, String(userId), batchId, 'patient', 'manifest.json');
+    const manifestPath = path.join(process.env.UPLOAD_STORAGE_ROOT, 'tenant_default', batchId, 'patient', 'manifest.json');
     assert.ok(fs.existsSync(manifestPath));
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 
     assert.strictEqual(manifest.batch_id, batchId);
-    assert.strictEqual(manifest.tenant_id, userId);
+    assert.strictEqual(manifest.tenant_id, 'tenant_default');
     assert.strictEqual(manifest.source_system, 'patient');
     assert.ok(manifest.upload_timestamp);
     assert.strictEqual(manifest.status, 'Accepted');
@@ -355,7 +355,7 @@ async function runTests() {
     const body = await res.json();
     const batchId = body.data.batch_id;
 
-    const expectedFilePath = path.join(process.env.UPLOAD_STORAGE_ROOT, String(userId), batchId, 'patient', 'SAMPLE_1.XLS');
+    const expectedFilePath = path.join(process.env.UPLOAD_STORAGE_ROOT, 'tenant_default', batchId, 'patient', 'SAMPLE_1.XLS');
     assert.ok(fs.existsSync(expectedFilePath));
   });
 

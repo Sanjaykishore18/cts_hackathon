@@ -22,9 +22,22 @@ db.exec(`
       username TEXT UNIQUE NOT NULL,
       email TEXT UNIQUE NOT NULL,
       password_hash TEXT NOT NULL,
+      role TEXT DEFAULT 'analyst',
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
 `);
+
+// Safe migration: check if role column exists, and if not, add it
+try {
+  const pragma = db.pragma('table_info(users)');
+  const hasRole = pragma.some(col => col.name === 'role');
+  if (!hasRole) {
+    db.exec("ALTER TABLE users ADD COLUMN role TEXT DEFAULT 'analyst'");
+    console.log('Successfully migrated SQLite schema: added role column to users table.');
+  }
+} catch (err) {
+  console.error('Error migrating users database schema:', err.message);
+}
 
 module.exports = db;

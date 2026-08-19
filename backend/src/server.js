@@ -1,6 +1,11 @@
 // Load environment variables as early as possible
 require('dotenv').config();
 
+if (!process.env.JWT_SECRET) {
+  console.error('FATAL: JWT_SECRET environment variable is missing.');
+  process.exit(1);
+}
+
 const app = require('./app');
 
 // Port definition

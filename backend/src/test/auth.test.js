@@ -58,7 +58,8 @@ async function runTests() {
       body: JSON.stringify({
         username: 'testuser',
         email: 'test@example.com',
-        password: 'password123'
+        password: 'password123',
+        turnstileToken: '1x00000000000000000000AA'
       })
     });
     assert.strictEqual(res.status, 201);
@@ -78,7 +79,8 @@ async function runTests() {
       body: JSON.stringify({
         username: 'testuser',
         email: 'another@example.com',
-        password: 'password123'
+        password: 'password123',
+        turnstileToken: '1x00000000000000000000AA'
       })
     });
     assert.strictEqual(res.status, 409);
@@ -95,7 +97,8 @@ async function runTests() {
       body: JSON.stringify({
         username: 'anotheruser',
         email: 'test@example.com',
-        password: 'password123'
+        password: 'password123',
+        turnstileToken: '1x00000000000000000000AA'
       })
     });
     assert.strictEqual(res.status, 409);
@@ -119,7 +122,8 @@ async function runTests() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: 'test@example.com',
-        password: 'password123'
+        password: 'password123',
+        turnstileToken: '1x00000000000000000000AA'
       })
     });
     assert.strictEqual(res.status, 200);
@@ -137,7 +141,8 @@ async function runTests() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: 'test@example.com',
-        password: 'wrongpassword'
+        password: 'wrongpassword',
+        turnstileToken: '1x00000000000000000000AA'
       })
     });
     assert.strictEqual(res.status, 401);
@@ -200,7 +205,8 @@ async function runTests() {
       body: JSON.stringify({
         username: 'tempuser',
         email: 'temp@example.com',
-        password: 'password123'
+        password: 'password123',
+        turnstileToken: '1x00000000000000000000AA'
       })
     });
     assert.strictEqual(regRes.status, 201);
@@ -210,7 +216,8 @@ async function runTests() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: 'temp@example.com',
-        password: 'password123'
+        password: 'password123',
+        turnstileToken: '1x00000000000000000000AA'
       })
     });
     const loginBody = await loginRes.json();

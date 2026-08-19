@@ -7,7 +7,19 @@ class UploadStorageRepository {
   }
 
   getPartitionPath(tenantId, batchId, sourceSystem) {
-    return path.join(this.storageRoot, String(tenantId), String(batchId), String(sourceSystem));
+    const safeRegex = /^[a-zA-Z0-9_\-]+$/;
+    if (!safeRegex.test(String(tenantId)) || !safeRegex.test(String(batchId)) || !safeRegex.test(String(sourceSystem))) {
+      throw new Error('Invalid path segment or path traversal attempt detected.');
+    }
+
+    const resolvedPath = path.resolve(this.storageRoot, String(tenantId), String(batchId), String(sourceSystem));
+    const absoluteRoot = path.resolve(this.storageRoot);
+
+    if (!resolvedPath.startsWith(absoluteRoot)) {
+      throw new Error('Path traversal attempt detected. Path escapes storage root.');
+    }
+
+    return resolvedPath;
   }
 
   async saveFile(tenantId, batchId, sourceSystem, fileName, buffer) {
@@ -15,7 +27,8 @@ class UploadStorageRepository {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
-    const filePath = path.join(dir, fileName);
+    const safeFileName = path.basename(fileName);
+    const filePath = path.join(dir, safeFileName);
     fs.writeFileSync(filePath, buffer);
     return filePath;
   }
@@ -30,8 +43,11 @@ class UploadStorageRepository {
     return filePath;
   }
 
-  async findDuplicateBatch(sha256) {
-    const rootPath = path.resolve(this.storageRoot);
+  async findDuplicateBatch(sha256, tenantId) {
+    if (!tenantId) {
+      return null;
+    }
+    const rootPath = path.resolve(this.storageRoot, String(tenantId));
     if (!fs.existsSync(rootPath)) {
       return null;
     }
@@ -60,7 +76,7 @@ class UploadStorageRepository {
       try {
         const content = fs.readFileSync(mPath, 'utf8');
         const manifest = JSON.parse(content);
-        if (manifest && Array.isArray(manifest.files)) {
+        if (manifest && manifest.tenant_id === tenantId && Array.isArray(manifest.files)) {
           for (const f of manifest.files) {
             if (f.sha256 === sha256) {
               return manifest.batch_id;

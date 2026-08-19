@@ -14,8 +14,14 @@ const authenticateJWT = (req, res, next) => {
   const token = authHeader.split(' ')[1];
 
   try {
-    const secret = process.env.JWT_SECRET || 'super_secret_local_development_jwt_key_123!';
-    const decoded = jwt.verify(token, secret);
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      return res.status(500).json({
+        success: false,
+        error: 'Auth configuration error'
+      });
+    }
+    const decoded = jwt.verify(token, secret, { algorithms: ['HS256'] });
 
     // Verify user still exists in SQLite database
     const user = authService.getUserById(decoded.id);

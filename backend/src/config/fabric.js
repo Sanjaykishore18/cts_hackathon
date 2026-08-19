@@ -61,8 +61,44 @@ const testConnection = async () => {
   return true;
 };
 
+const statusConfig = {
+  ...config,
+  database: process.env.FABRIC_STATUS_DATABASE || 'Copay_PSP_Warehouse'
+};
+
+const statusPool = new sql.ConnectionPool(statusConfig);
+let statusPoolConnect = statusPool.connect();
+
+statusPool.on('error', err => {
+  console.error('Unexpected error on idle Fabric status database client', err);
+});
+
+const statusQuery = async (text, params = []) => {
+  const start = Date.now();
+  await statusPoolConnect;
+  try {
+    const request = statusPool.request();
+    // Bind parameters in standard @param1, @param2 format
+    params.forEach((param, index) => {
+      request.input(`param${index + 1}`, param);
+    });
+    
+    const result = await request.query(text);
+    const duration = Date.now() - start;
+    if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+      console.log('Executed Fabric status query', { duration, rowsCount: result.recordset?.length || 0 });
+    }
+    return { rows: result.recordset || [], rowCount: result.rowsAffected[0] || 0 };
+  } catch (error) {
+    console.error('Fabric status query error:', { error: error.message });
+    throw error;
+  }
+};
+
 module.exports = {
   pool,
   query,
-  testConnection
+  testConnection,
+  statusPool,
+  statusQuery
 };

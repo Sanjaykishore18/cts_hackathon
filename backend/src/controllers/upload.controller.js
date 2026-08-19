@@ -5,10 +5,11 @@ class UploadController {
     try {
       const sourceSystem = req.body.source_system;
       const files = req.files;
-      // Get tenant_id from req.user.id (from decoded JWT) or fall back to default
-      const tenantId = req.user ? req.user.id : 'default_tenant';
+      const tenantId = process.env.DEFAULT_TENANT_ID || 'tenant_default';
+      const uploadedBy = req.user ? req.user.username : 'anonymous';
+      const uploadedAt = new Date();
 
-      const result = await uploadService.processUpload(tenantId, sourceSystem, files);
+      const result = await uploadService.processUpload(tenantId, sourceSystem, files, uploadedBy, uploadedAt);
 
       res.status(202).json({
         success: true,

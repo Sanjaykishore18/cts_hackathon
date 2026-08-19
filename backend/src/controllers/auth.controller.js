@@ -50,7 +50,8 @@ class AuthController {
           user: {
             id: user.id,
             username: user.username,
-            email: user.email
+            email: user.email,
+            role: user.role
           }
         }
       });
@@ -125,6 +126,19 @@ class AuthController {
       return res.status(200).json({
         success: true,
         message: 'Logout successful. Please discard the authentication token on the client side.'
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async config(req, res, next) {
+    try {
+      return res.status(200).json({
+        success: true,
+        data: {
+          turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '1x00000000000000000000AA'
+        }
       });
     } catch (error) {
       next(error);

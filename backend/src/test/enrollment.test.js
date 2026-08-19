@@ -25,7 +25,8 @@ async function runTests() {
           body: JSON.stringify({
             username: `testuser_${uniqueId}`,
             email: `test_${uniqueId}@example.com`,
-            password: 'password123'
+            password: 'password123',
+            turnstileToken: '1x00000000000000000000AA'
           })
         });
         const loginRes = await originalFetch(`${baseUrl}/auth/login`, {
@@ -33,7 +34,8 @@ async function runTests() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             username: `testuser_${uniqueId}`,
-            password: 'password123'
+            password: 'password123',
+            turnstileToken: '1x00000000000000000000AA'
           })
         });
         const loginData = await loginRes.json();

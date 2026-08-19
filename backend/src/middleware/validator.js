@@ -222,10 +222,23 @@ const validateEnrollmentUpdatePayload = (req, res, next) => {
   next();
 };
 
+const validateBatchId = (req, res, next) => {
+  const batchId = req.params.batchId || req.query.batchId;
+  if (!batchId || !/^B\d{8}T\d{6}Z-[a-f0-9]{6}$/.test(batchId)) {
+    const error = new Error('Invalid Batch ID format. Expected format: B{yyyyMMdd}T{HHmmss}Z-{6 lowercase hex}');
+    error.status = 400;
+    error.code = 'VALIDATION_ERROR';
+    error.details = [{ field: 'batchId', message: 'Invalid Batch ID format. Expected format: B{yyyyMMdd}T{HHmmss}Z-{6 lowercase hex}' }];
+    return next(error);
+  }
+  next();
+};
+
 module.exports = {
   validatePatientId,
   validateProgramId,
   validateFilters,
   validateEnrollmentPayload,
-  validateEnrollmentUpdatePayload
+  validateEnrollmentUpdatePayload,
+  validateBatchId
 };

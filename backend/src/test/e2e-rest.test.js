@@ -22,7 +22,8 @@ async function runE2eRestTests() {
       body: JSON.stringify({
         username: `test_e2e_${Date.now()}`,
         email: `e2e_${Date.now()}@example.com`,
-        password: 'securePassword123'
+        password: 'securePassword123',
+        turnstileToken: '1x00000000000000000000AA'
       })
     });
     const regJson = await regRes.json();
@@ -34,7 +35,8 @@ async function runE2eRestTests() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         username: regJson.data.user.username,
-        password: 'securePassword123'
+        password: 'securePassword123',
+        turnstileToken: '1x00000000000000000000AA'
       })
     });
     const loginJson = await loginRes.json();

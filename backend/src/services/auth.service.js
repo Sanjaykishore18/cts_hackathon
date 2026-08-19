@@ -50,12 +50,18 @@ class AuthService {
     }
 
     // Generate JWT
-    const secret = process.env.JWT_SECRET || 'super_secret_local_development_jwt_key_123!';
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      const error = new Error('Auth configuration error');
+      error.status = 500;
+      throw error;
+    }
     const expiresIn = process.env.JWT_EXPIRES_IN || '24h';
     const payload = {
       id: user.id,
       username: user.username,
-      email: user.email
+      email: user.email,
+      role: user.role
     };
 
     const token = jwt.sign(payload, secret, { expiresIn });
@@ -65,7 +71,8 @@ class AuthService {
       user: {
         id: user.id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        role: user.role
       }
     };
   }
@@ -78,7 +85,8 @@ class AuthService {
     return {
       id: user.id,
       username: user.username,
-      email: user.email
+      email: user.email,
+      role: user.role
     };
   }
 }

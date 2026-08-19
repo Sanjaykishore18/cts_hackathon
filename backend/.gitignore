@@ -5,4 +5,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 src/database/auth.db
+src/database/*_test*.db
 venv_strategy/
+uploads_security_test/
+uploads_status_fabric_test/
+uploads_status_test/

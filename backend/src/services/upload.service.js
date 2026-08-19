@@ -3,6 +3,19 @@ const path = require('path');
 const xlsx = require('xlsx');
 const contract = require('../config/upload_contracts.json');
 const storageRepo = require('../repositories/upload-storage.repository');
+const uploadStatusRepository = require('../repositories/upload-status.repository');
+
+function generateBatchId() {
+  const now = new Date();
+  const yyyy = now.getUTCFullYear();
+  const MM = String(now.getUTCMonth() + 1).padStart(2, '0');
+  const dd = String(now.getUTCDate()).padStart(2, '0');
+  const HH = String(now.getUTCHours()).padStart(2, '0');
+  const mm = String(now.getUTCMinutes()).padStart(2, '0');
+  const ss = String(now.getUTCSeconds()).padStart(2, '0');
+  const hex = crypto.randomBytes(3).toString('hex').toLowerCase();
+  return `B${yyyy}${MM}${dd}T${HH}${mm}${ss}Z-${hex}`;
+}
 
 function calculateSha256(buffer) {
   return crypto.createHash('sha256').update(buffer).digest('hex');
@@ -42,7 +55,7 @@ class UploadService {
     this.unknownSheetBehavior = process.env.UPLOAD_UNKNOWN_SHEET_BEHAVIOR || 'ignore';
   }
 
-  async processUpload(tenantId, sourceSystem, files) {
+  async processUpload(tenantId, sourceSystem, files, uploadedBy = 'anonymous', uploadedAt = new Date()) {
     // 1. Verify source system
     if (sourceSystem !== 'patient' && sourceSystem !== 'business') {
       const err = new Error("Invalid source_system. Must be 'patient' or 'business'.");
@@ -100,7 +113,7 @@ class UploadService {
       const sha256 = calculateSha256(file.buffer);
       fileHashes.push({ file, sha256 });
 
-      const existingBatch = await storageRepo.findDuplicateBatch(sha256);
+      const existingBatch = await storageRepo.findDuplicateBatch(sha256, tenantId);
       if (!existingBatch) {
         isAllDuplicate = false;
       } else {
@@ -257,7 +270,7 @@ class UploadService {
     }
 
     // 5. Save files and generate manifest
-    const batchId = crypto.randomUUID();
+    const batchId = generateBatchId();
 
     const manifestFiles = [];
     for (const fMeta of fileMetadataList) {
@@ -285,6 +298,9 @@ class UploadService {
     };
 
     await storageRepo.saveManifest(tenantId, batchId, sourceSystem, manifest);
+
+    // Save initial status to Fabric status metadata store
+    await uploadStatusRepository.createBatch(batchId, tenantId, uploadedBy, uploadedAt);
 
     return {
       batch_id: batchId,

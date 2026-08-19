@@ -13,10 +13,14 @@ const pool = new Pool({
   max: 20
 });
 
+
+
 // Event listener for idle pool errors
 pool.on('error', (err) => {
   console.error('Unexpected error on idle database client', err);
 });
+
+
 
 /**
  * Reusable query execution handler
